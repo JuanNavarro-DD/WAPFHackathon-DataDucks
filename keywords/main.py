@@ -8,6 +8,9 @@ from keybert import KeyLLM
 from ctransformers import AutoModelForCausalLM
 from transformers import pipeline, AutoTokenizer
 
+from huggingface_hub import login
+login(token="HF_TOKEN") #TODO
+
 app = FastAPI()
 
 #Setup the llm
@@ -17,11 +20,11 @@ model = AutoModelForCausalLM.from_pretrained("../../../models/mistral-7b-instruc
                                              hf=True) 
 
 #Tokeniser from hugging face model
-tokenizer = AutoTokenizer.from_pretrained(model) #TODO: fix
+tokenizer = AutoTokenizer.from_pretrained("mistralai/mistral-7b-instruct-v0.1")
 
 #Pipeline
 generator = pipeline(model=model,
-                     #tokenizer=tokenizer,
+                     tokenizer=tokenizer,
                      task='text-generation',
                      max_new_tokens=50,
                      repetition_penalty=1.1)
