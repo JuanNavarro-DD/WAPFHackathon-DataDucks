@@ -2,7 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='style/web-speech.css')}}">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <title>Emergency Response</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -50,10 +53,31 @@
                     <label for="botOutput">BOT (Maybe)</label>
                     <textarea class="form-control" id="botOutput" rows="3"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="transcript">Transcript</label>
-                    <textarea class="form-control" id="transcript" rows="6"></textarea>
-                </div>
+                    <div class="container mt-3">
+                        <h3 class="text-center">Every Second Matters</h3>
+                        <div id="info"></div>
+                        <div class="float-right">
+                          <button id="start_button">
+                            <img id="start_img" src="{{url_for('static', filename='images/mic.gif')}}" alt="Start"></button>
+                        </div>
+                        <div id="results">
+                          <span id="final_span" class="final"></span>
+                          <span id="interim_span" class="interim"></span>
+                          <p>
+                        </div>
+                        <div class="row col-12 p-0 m-0">
+                          <div class="row col-12 col-md-8 col-lg-6 p-0 m-0">
+                              <select id="select_language"></select>
+                              <select id="select_dialect"></select>
+                          </div>
+                          <div class="col-12 col-md-4 col-lg-6 mt-3 mt-md-0 p-0 m-0">
+                            <div class="float-right">
+                              <button id="copy_button" class="btn btn-primary ">Copy</button>
+                            </div>
+                          </div>
+                        </div>
+          
+                    </div>
             </div>
             <!-- Middle Column -->
             <div class="col-md-4">
@@ -82,6 +106,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{url_for('static', filename='js/languages.js')}}"></script>
+    <script src="{{url_for('static', filename='js/web-speech-api.js')}}"></script>
+
 </body>
 </html>
 
