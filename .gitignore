@@ -151,10 +151,12 @@ dmypy.json
 
 # pytype static type analyzer
 .pytype/
+models/
 
 # Cython debug symbols
 cython_debug/
 openai-project.json
+huggingFaceToken.json
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
