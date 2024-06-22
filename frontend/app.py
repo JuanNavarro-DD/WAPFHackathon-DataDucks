@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-import requests
+import requests, logging
 
 app = Flask(__name__)
 
@@ -9,7 +9,9 @@ def index():
 
 @app.route('/keyword')
 def keyword():
-    r= requests.post('http://127.0.0.1:8000/extract',json={"transcript":"emergency"})
+    headers = {"content-type":"application/json","accept":"application/json" }
+    r= requests.post('http://127.0.0.1:8000/extract',json={"transcript":"there's a fire in my house"},headers=headers)
+    app.logger.info(r.text)
     return r.text
 
 
