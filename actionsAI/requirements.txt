@@ -1,0 +1,5 @@
+fastapi
+ctransformers
+sentence-transformers
+transformers
+huggingface_hub
