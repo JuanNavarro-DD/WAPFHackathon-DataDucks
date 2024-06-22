@@ -1,0 +1,6 @@
+fastapi
+keybert
+ctransformers
+sentence-transformers
+transformers
+huggingface_hub
