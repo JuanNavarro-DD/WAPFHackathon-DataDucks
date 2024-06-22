@@ -383,6 +383,17 @@
       {
           "q": "Can you provide a description of any suspects?",
           "qtype": ["fraud"]
-      }
+      },
+      {"q":"What is your emergency?", "qtype": ["basic"]},
+      {"q":"Where are you located right now?", "qtype": ["basic"]},
+      {"q":"Can you provide the address or nearest intersection?", "qtype": ["basic"]},
+      {"q":"Are you calling from a mobile phone or a landline?", "qtype": ["basic"]},
+      {"q":"How many people are involved or injured?", "qtype": ["basic"]},
+      {"q":"Is anyone in immediate danger?", "qtype": ["basic"]},
+      {"q":"Are there any weapons involved or present at the scene?", "qtype": ["basic"]},
+      {"q":"Is the situation still ongoing, or has it already occurred?", "qtype": ["basic"]},
+      {"q":"Is the person conscious and breathing?", "qtype": ["basic"]},
+      {"q":"Do you know CPR or any first aid that could be administered?", "qtype": ["basic"]},
+      {"q":"Is there anything else important responders should know?", "qtype": ["basic"]}
     ]
 }

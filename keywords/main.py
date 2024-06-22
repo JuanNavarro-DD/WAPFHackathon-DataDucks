@@ -1,13 +1,19 @@
 # from fastapi import FastAPI
 from typing import List, Dict
 #import json
-from keybert.llm import TextGeneration
+#from keybert.llm import TextGeneration
+from keybert.llm import LangChain
 from keybert import KeyLLM
 
-from ctransformers import AutoModelForCausalLM
-from transformers import pipeline, AutoTokenizer
+# from ctransformers import AutoModelForCausalLM
+# from transformers import pipeline, AutoTokenizer
 
-from huggingface_hub import login
+# from huggingface_hub import login
+
+from langchain.chains.question_answering import load_qa_chain
+#from langchain.llms import Bedrock
+from langchain_aws import BedrockLLM as Bedrock
+
 
 import boto3
 import json
@@ -19,26 +25,27 @@ boto3.setup_default_session(profile_name='dd-sandbox-jp')
 bedrock = boto3.client('bedrock-runtime')
 
 
-HFToken = json.load(open("huggingFaceToken.json"))["token"]
 
-login(token=HFToken) 
+# HFToken = json.load(open("huggingFaceToken.json"))["token"]
+
+# login(token=HFToken) 
 app = FastAPI()
 
 #Setup the llm
-model = AutoModelForCausalLM.from_pretrained("../../../models/mistral-7b-instruct-v0.1.Q4_K_M.gguf",
-                                             model_type="mistral",
-                                             gpu_layers=0,
-                                             hf=True) 
+# model = AutoModelForCausalLM.from_pretrained("../../../models/mistral-7b-instruct-v0.1.Q4_K_M.gguf",
+#                                              model_type="mistral",
+#                                              gpu_layers=0,
+#                                              hf=True) 
 
-#Tokeniser from hugging face model
-tokenizer = AutoTokenizer.from_pretrained("mistralai/mistral-7b-instruct-v0.1")
+# #Tokeniser from hugging face model
+# tokenizer = AutoTokenizer.from_pretrained("mistralai/mistral-7b-instruct-v0.1")
 
 #Pipeline
-generator = pipeline(model=model,
-                     tokenizer=tokenizer,
-                     task='text-generation',
-                     max_new_tokens=500,
-                     repetition_penalty=1.1)
+# generator = pipeline(model=model,
+#                      tokenizer=tokenizer,
+#                      task='text-generation',
+#                      max_new_tokens=500,
+#                      repetition_penalty=1.1)
 
 
 
@@ -67,8 +74,19 @@ For example, don't say:
 """
 prompt = example_prompt + kw_prompt
 
-llm = TextGeneration(generator, prompt=prompt)
+# llm = TextGeneration(generator, prompt=prompt)
+
+#Bedrock llm for keybert
+modelId = "mistral.mistral-7b-instruct-v0:2"
+#client=bedrock
+llm = Bedrock(model_id=modelId, credentials_profile_name="dd-sandbox-jp")
+
+chain = load_qa_chain(llm, chain_type = "stuff")
+
+llm = LangChain(chain)
+
 kw_model = KeyLLM(llm)
+
 
 
 #Load the svm model
@@ -106,6 +124,7 @@ def extract_keywords(document:Dict) -> Dict:
         "questions":questions,
         "Emergency Type":emergency_type,
         "Actions":actions
+        #"keywords":keywords
     }
 
     return output
@@ -139,6 +158,7 @@ def classify_emergency(keywords:list) -> str:
         "grand theft", "petty theft", "auto theft", "bike theft", "identity theft", "piracy", 
         "embezzlement", "looting", "stealing", "fraudulent appropriation", "pilferage"]
         Please only return the emergency type
+        Attention: Your response should only be the emergency type
         For example, don't say: 
         "Here is the classification based on the keywords provided"
         [/INST]Theft</s>"""
@@ -158,7 +178,7 @@ def classify_emergency(keywords:list) -> str:
     #services = generator(prompt,do_sample=True, top_k=50, top_p=0.95, temperature=1.0, return_full_text=False)
     body = json.dumps({
         "prompt": prompt,
-        "max_tokens": 100,
+        "max_tokens": 50,
         "top_p": 0.9,
         "temperature": 1.0
     })
@@ -177,57 +197,7 @@ def return_questions(keyword:str) -> list:
     '''
     Pass a transcript of keywords
     return a set of questions to ask
-    '''
-    #TODO: update question set.
-    # questions = [{'q':'What is your emergency?', 'qtype': ['basic']},
-    # {'q':'Where are you located right now?', 'qtype': ['basic']},
-    # {'q':'Can you provide the address or nearest intersection?', 'qtype': ['basic']},
-    # {'q':'Are you calling from a mobile phone or a landline?', 'qtype': ['basic']},
-    # {'q':'How many people are involved or injured?', 'qtype': ['basic']},
-    # {'q':'Is anyone in immediate danger?', 'qtype': ['basic']},
-    # {'q':'Are there any weapons involved or present at the scene?', 'qtype': ['basic']},
-    # {'q':'Is the situation still ongoing, or has it already occurred?', 'qtype': ['basic']},
-    # {'q':'Is the person conscious and breathing?', 'qtype': ['basic']},
-    # {'q':'Do you know CPR or any first aid that could be administered?', 'qtype': ['basic']},
-    # {'q':'Is there anything else important responders should know?', 'qtype': ['basic']},
-    # {'q':'What is your emergency?', 'qtype':['robbery']},
-    # {'q':'Where is the location of the robbery?', 'qtype':['robbery']},
-    # {'q':'Can you describe the suspects?', 'qtype':['robbery']},
-    # {'q':'Do you know if the suspects are still at the scene?', 'qtype':['robbery']},
-    # {'q':'Are there any injuries?', 'qtype':['robbery']},
-    # {'q':'Did you see or hear anything else that might be relevant?', 'qtype':['robbery']},
-    # {'q':'Is anyone else with you?', 'qtype':['robbery']},
-    # {'q':'Are the suspects still armed?', 'qtype':['robbery']},
-    # {'q':'Are you in a safe place now?', 'qtype':['robbery']},
-    # {'q':'Have the suspects made any demands or threats?', 'qtype':['robbery']},
-    # {'q':'Can you lock yourself in a secure room or area?', 'qtype':['robbery']},
-    # {'q':'Are there security cameras in the area that might have captured the incident?', 'qtype':['robbery']},
-    # {'q': 'What is your emergency?', 'qtype': ['suspicious person']},
-    # {'q': 'Where is the location of the suspicious person?', 'qtype': ['suspicious person']},
-    # {'q': 'Can you describe the suspicious person?', 'qtype': ['suspicious person']},
-    # {'q': 'What is the person doing that makes them suspicious?', 'qtype': ['suspicious person']},
-    # {'q': 'Is the person alone, or are there others with them?', 'qtype': ['suspicious person']},
-    # {'q': 'Do you feel threatened or unsafe because of this person\'s behavior?', 'qtype': ['suspicious person']},
-    # {'q': 'Has the person approached you or anyone else?', 'qtype': ['suspicious person']},
-    # {'q': 'Do you know if the person is armed?', 'qtype': ['suspicious person']},
-    # {'q': 'Have you seen the person before in the area?', 'qtype': ['suspicious person']},
-    # {'q': 'Are there any specific actions or statements made by the person that concern you?', 'qtype': ['suspicious person']},
-    # {'q': 'Have you observed the person entering or leaving any buildings or vehicles?', 'qtype': ['suspicious person']},
-    # {'q': 'Are there any security cameras in the area that might have captured the person\'s activities?', 'qtype': ['suspicious person']},
-    # {'q':'What is your emergency?', 'qtype':['domestic violence']},
-    # {'q':'Are you in a safe place right now?', 'qtype':['domestic violence']},
-    # {'q':'Is anyone injured?', 'qtype':['domestic violence']},
-    # {'q':'Can you tell me what happened?', 'qtype':['domestic violence']},
-    # {'q':'Who is the perpetrator?', 'qtype':['domestic violence']},
-    # {'q':'Is the perpetrator still present?', 'qtype':['domestic violence']},
-    # {'q':'Is there a weapon involved?', 'qtype':['domestic violence']},
-    # {'q':'Have there been previous incidents of violence?', 'qtype':['domestic violence']},
-    # {'q':'Are there children or other vulnerable individuals present?', 'qtype':['domestic violence']},
-    # {'q':'Do you have a safe place to go if you need to leave?', 'qtype':['domestic violence']},
-    # {'q':'Have you contacted any friends, family members, or support services for assistance?', 'qtype':['domestic violence']},
-    # {'q':'Would you like to speak with a counselor or advocate for additional support?', 'qtype':['domestic violence']},
-    # {'q':'Is there anything else you think is important for responders to know?', 'qtype':['domestic violence']}
-    # ]
+    '''    
     with open('questions-type.json', 'r') as infile:
         jsondata = infile.read()
 
