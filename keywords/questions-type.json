@@ -1,0 +1,399 @@
+{
+  "emergencies": [
+      {
+        "q": "Can you describe what was stolen?",
+        "qtype": ["theft"]
+      },
+      {
+        "q": "When did the theft occur?",
+        "qtype": ["theft"]
+      },
+      {
+        "q": "Do you know who may have committed the theft?",
+        "qtype": ["theft"]
+      },
+      {
+        "q": "Was the theft from a vehicle, home, or person?",
+        "qtype": ["theft"]
+      },
+      {
+        "q": "Were there any witnesses to the theft?",
+        "qtype": ["theft"]
+      },
+      {
+        "q": "Is there any video surveillance of the area where the theft occurred?",
+        "qtype": ["theft"]
+      },
+      {
+        "q": "Did you see any suspicious individuals or vehicles in the area before the theft?",
+        "qtype": ["theft"]
+      },
+      {
+        "q": "Have you reported the theft to the police?",
+        "qtype": ["theft"]
+      },
+      {
+        "q": "Is there any identifiable information about the stolen items (serial numbers, unique marks)?",
+        "qtype": ["theft"]
+      },
+      {
+        "q": "How did the thief gain access to the property or items?",
+        "qtype": ["theft"]
+      },
+      {
+          "q": "Can you describe the nature of the assault?",
+          "qtype": ["assault"]
+        },
+        {
+          "q": "When and where did the assault occur?",
+          "qtype": ["assault"]
+        },
+        {
+          "q": "Were there any weapons involved in the assault?",
+          "qtype": ["assault"]
+        },
+        {
+          "q": "Can you identify the person who committed the assault?",
+          "qtype": ["assault"]
+        },
+        {
+          "q": "Were there any witnesses to the assault?",
+          "qtype": ["assault"]
+        },
+        {
+          "q": "Did you receive any injuries from the assault? If so, what kind?",
+          "qtype": ["assault"]
+        },
+        {
+          "q": "Have you received medical attention for your injuries?",
+          "qtype": ["assault"]
+        },
+        {
+          "q": "Is there any video surveillance in the area that might have captured the assault?",
+          "qtype": ["assault"]
+        },
+        {
+          "q": "Have you reported the assault to the police?",
+          "qtype": ["assault"]
+        },
+        {
+          "q": "Do you know if the assailant has committed similar acts before?",
+          "qtype": ["assault"]
+        },
+        {
+          "q": "Can you describe the location of the traffic accident?",
+          "qtype": ["traffic accident"]
+        },
+        {
+          "q": "When did the traffic accident occur?",
+          "qtype": ["traffic accident"]
+        },
+        {
+          "q": "How many vehicles were involved in the accident?",
+          "qtype": ["traffic accident"]
+        },
+        {
+          "q": "Are there any injuries reported? If so, how many?",
+          "qtype": ["traffic accident"]
+        },
+        {
+          "q": "Can you describe the extent of the damage to the vehicles involved?",
+          "qtype": ["traffic accident"]
+        },
+        {
+          "q": "Was there any property damage as a result of the accident?",
+          "qtype": ["traffic accident"]
+        },
+        {
+          "q": "Have emergency services been notified?",
+          "qtype": ["traffic accident"]
+        },
+        {
+          "q": "Is there any traffic disruption as a result of the accident?",
+          "qtype": ["traffic accident"]
+        },
+        {
+          "q": "Do you have any information on the cause of the accident?",
+          "qtype": ["traffic accident"]
+        },
+        {
+          "q": "Are there any witnesses to the accident?",
+          "qtype": ["traffic accident"]
+        },
+        {
+          "q": "Can you describe the location where the breaking and entering occurred?",
+          "qtype": ["breaking and entering"]
+        },
+        {
+          "q": "When did the breaking and entering take place?",
+          "qtype": ["breaking and entering"]
+        },
+        {
+          "q": "Was anything stolen or damaged during the breaking and entering?",
+          "qtype": ["breaking and entering"]
+        },
+        {
+          "q": "Did you see or hear anything suspicious at the time of the breaking and entering?",
+          "qtype": ["breaking and entering"]
+        },
+        {
+          "q": "Is there any video surveillance footage available of the incident?",
+          "qtype": ["breaking and entering"]
+        },
+        {
+          "q": "Have you noticed any suspicious individuals or vehicles in the area recently?",
+          "qtype": ["breaking and entering"]
+        },
+        {
+          "q": "How did the intruder(s) gain entry to the property?",
+          "qtype": ["breaking and entering"]
+        },
+        {
+          "q": "Have you reported the incident to the police?",
+          "qtype": ["breaking and entering"]
+        },
+        {
+          "q": "Do you have any serial numbers or identifying information for stolen items?",
+          "qtype": ["breaking and entering"]
+        },
+        {
+          "q": "Can you provide a description of any suspects?",
+          "qtype": ["breaking and entering"]
+        },
+        {
+          "q": "Can you describe the type and extent of the vandalism?",
+          "qtype": ["vandalism"]
+        },
+        {
+          "q": "When and where did the vandalism occur?",
+          "qtype": ["vandalism"]
+        },
+        {
+          "q": "Do you have any information on who may have committed the vandalism?",
+          "qtype": ["vandalism"]
+        },
+        {
+          "q": "Was the vandalism targeted towards a specific individual or property?",
+          "qtype": ["vandalism"]
+        },
+        {
+          "q": "Are there any witnesses to the vandalism?",
+          "qtype": ["vandalism"]
+        },
+        {
+          "q": "Is there any video surveillance footage that captured the vandalism?",
+          "qtype": ["vandalism"]
+        },
+        {
+          "q": "Have you reported the vandalism to the police?",
+          "qtype": ["vandalism"]
+        },
+        {
+          "q": "Is there any graffiti involved? If so, can you describe it?",
+          "qtype": ["vandalism"]
+        },
+        {
+          "q": "Was there any message or symbol left by the vandals?",
+          "qtype": ["vandalism"]
+        },
+        {
+          "q": "How has the vandalism affected you or the community?",
+          "qtype": ["vandalism"]
+        },
+        {
+          "q": "Can you specify the type of drug-related crime (possession, trafficking, manufacturing)?",
+          "qtype": ["drug-related crimes"]
+        },
+        {
+          "q": "When and where did the drug-related crime occur?",
+          "qtype": ["drug-related crimes"]
+        },
+        {
+          "q": "Do you have any information on the individuals involved?",
+          "qtype": ["drug-related crimes"]
+        },
+        {
+          "q": "Were there any substances seized? If so, can you describe them?",
+          "qtype": ["drug-related crimes"]
+        },
+        {
+          "q": "Was any paraphernalia found at the scene?",
+          "qtype": ["drug-related crimes"]
+        },
+        {
+          "q": "Are there any known locations where drug-related activities are taking place?",
+          "qtype": ["drug-related crimes"]
+        },
+        {
+          "q": "Have you noticed any suspicious activities or transactions?",
+          "qtype": ["drug-related crimes"]
+        },
+        {
+          "q": "Is there any video surveillance footage available?",
+          "qtype": ["drug-related crimes"]
+        },
+        {
+          "q": "Have you reported this incident to the police?",
+          "qtype": ["drug-related crimes"]
+        },
+        {
+          "q": "Do you know if the individuals involved are part of a larger network?",
+          "qtype": ["drug-related crimes"]
+        },
+        {
+          "q": "Can you describe the nature of the public disturbance?",
+          "qtype": ["public disturbance"]
+        },
+        {
+          "q": "When and where did the public disturbance occur?",
+          "qtype": ["public disturbance"]
+        },
+        {
+          "q": "How many individuals were involved in the disturbance?",
+          "qtype": ["public disturbance"]
+        },
+        {
+          "q": "Were there any injuries or damages reported as a result of the disturbance?",
+          "qtype": ["public disturbance"]
+        },
+        {
+          "q": "Did the disturbance involve any illegal activities (e.g., vandalism, drug use)?",
+          "qtype": ["public disturbance"]
+        },
+        {
+          "q": "Have the authorities been notified about the disturbance?",
+          "qtype": ["public disturbance"]
+        },
+        {
+          "q": "Is there any video or photographic evidence of the disturbance?",
+          "qtype": ["public disturbance"]
+        },
+        {
+          "q": "Do you know what caused the disturbance?",
+          "qtype": ["public disturbance"]
+        },
+        {
+          "q": "Were any weapons seen or used during the disturbance?",
+          "qtype": ["public disturbance"]
+        },
+        {
+          "q": "Can you provide descriptions of any individuals leading or prominently involved in the disturbance?",
+          "qtype": ["public disturbance"]
+        },
+        {
+          "q": "Can you describe the missing",
+          "qtype": ["missing person"]
+      },
+      {
+          "q": "When and where was the person last seen?",
+          "qtype": ["missing person"]
+      },
+      {
+          "q": "Do you have any information on the person's appearance, clothing, or belongings?",
+          "qtype": ["missing person"]
+      },
+      {
+          "q": "Does the missing person have any medical conditions or special needs?",
+          "qtype": ["missing person"]
+      },
+      {
+          "q": "Has the missing person been reported to the authorities?",
+          "qtype": ["missing person"]
+      },
+      {
+          "q": "Is there any reason to believe the person may be in danger?",
+          "qtype": ["missing person"]
+      },
+      {
+          "q": "Have you checked with friends, family, or acquaintances to see if they have seen the missing person?",
+          "qtype": ["missing person"]
+      },
+      {
+          "q": "Is there any video surveillance footage that may have captured the missing person?",
+          "qtype": ["missing person"]
+      },
+      {
+          "q": "Do you have any leads or information that may help locate the missing person?",
+          "qtype": ["missing person"]
+      },
+      {
+          "q": "Can you describe the suspicious activity?",
+          "qtype": ["suspicious activity"]
+      },
+      {
+          "q": "When and where did the suspicious activity occur?",
+          "qtype": ["suspicious activity"]
+      },
+      {
+          "q": "Can you identify the individuals involved in the suspicious activity?",
+          "qtype": ["suspicious activity"]
+      },
+      {
+          "q": "What made the activity seem suspicious to you?",
+          "qtype": ["suspicious activity"]
+      },
+      {
+          "q": "Was there any property damage or theft associated with the suspicious activity?",
+          "qtype": ["suspicious activity"]
+      },
+      {
+          "q": "Have you reported the suspicious activity to the authorities?",
+          "qtype": ["suspicious activity"]
+      },
+      {
+          "q": "Is there any video surveillance footage of the suspicious activity?",
+          "qtype": ["suspicious activity"]
+      },
+      {
+          "q": "Do you know if the individuals involved have been involved in similar activities before?",
+          "qtype": ["suspicious activity"]
+      },
+      {
+          "q": "Can you describe the nature of the fraud?",
+          "qtype": ["fraud"]
+      },
+      {
+          "q": "When and where did the fraud occur?",
+          "qtype": ["fraud"]
+      },
+      {
+          "q": "Do you have any information on the individuals or organizations involved in the fraud?",
+          "qtype": ["fraud"]
+      },
+      {
+          "q": "What kind of fraud was committed (e.g., identity theft, financial fraud)?",
+          "qtype": ["fraud"]
+      },
+      {
+          "q": "Have you reported the fraud to the authorities?",
+          "qtype": ["fraud"]
+      },
+      {
+          "q": "Is there any evidence or documentation of the fraud?",
+          "qtype": ["fraud"]
+      },
+      {
+          "q": "Have you taken any steps to protect yourself from further fraud?",
+          "qtype": ["fraud"]
+      },
+      {
+          "q": "Do you know if the individuals involved have committed similar frauds before?",
+          "qtype": ["fraud"]
+      },
+      {
+          "q": "Can you provide a description of any suspects?",
+          "qtype": ["fraud"]
+      },
+      {"q":"What is your emergency?", "qtype": ["basic"]},
+      {"q":"Where are you located right now?", "qtype": ["basic"]},
+      {"q":"Can you provide the address or nearest intersection?", "qtype": ["basic"]},
+      {"q":"Are you calling from a mobile phone or a landline?", "qtype": ["basic"]},
+      {"q":"How many people are involved or injured?", "qtype": ["basic"]},
+      {"q":"Is anyone in immediate danger?", "qtype": ["basic"]},
+      {"q":"Are there any weapons involved or present at the scene?", "qtype": ["basic"]},
+      {"q":"Is the situation still ongoing, or has it already occurred?", "qtype": ["basic"]},
+      {"q":"Is the person conscious and breathing?", "qtype": ["basic"]},
+      {"q":"Do you know CPR or any first aid that could be administered?", "qtype": ["basic"]},
+      {"q":"Is there anything else important responders should know?", "qtype": ["basic"]}
+    ]
+}
