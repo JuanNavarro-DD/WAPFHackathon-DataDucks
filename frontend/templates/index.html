@@ -62,11 +62,9 @@
                             <img id="start_img" src="{{url_for('static', filename='images/mic.gif')}}" alt="Start"></button>
                         </div>
                         <div id="results">
-                            <form action="/keyword" method="post">
-                          <!-- <span id="final_span" name="final_span" class="final"></span> -->
+                        <form action="/keyword" method="post">
                           <textarea id="final_span" name="final_span" class="final"></textarea>
-                     
-                          <span id="interim_span" class="interim"></span>
+                          <textarea id="interim_span" name="interim_span" class="interim"></textarea>
                           <p>
                         </div>
                         <div>
@@ -87,12 +85,10 @@
             
             <div class="col-md-4">
                 <div class="questions">
-                    <h5>Questions</h5>
-                    <button class="btn btn-secondary">Question 1</button>
-                    <button class="btn btn-secondary">Question 2</button>
-                    <button class="btn btn-secondary">Question 3</button>
+                    <h5>Recommendations</h5>
+
                     <div class="keyword-extraction mt-4">
-                        <strong>Key Word Extraction</strong>
+                        <strong>{{fintran}}</strong>
                         <!-- Add keyword extraction content here -->
                     </div> <br>
 
@@ -105,8 +101,7 @@
             <div class="col-md-4">
                 <div class="actions">
                     <h5>Recommended Actions</h5>
-                    <button class="btn btn-secondary">Action 1</button>
-                    <button class="btn btn-secondary">Action 2</button>
+
                 </div>
             </div>
         </div>
