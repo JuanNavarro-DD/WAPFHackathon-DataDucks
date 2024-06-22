@@ -12,7 +12,9 @@
 
 - Create a hugging face account, and generate a token for collecting the tokenisation from mistralai/mistral-7b-instruct-v0.1
 
+
 - Go to https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1 and accept the terms and conditions of the model
 
 - set the path to your local model in the main.py
 - create huggingFaceToken.json, in the working directory and add your hugging face token into the the json in format `{"token":"MYTOKEN"}`
+

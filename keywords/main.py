@@ -48,7 +48,6 @@ app = FastAPI()
 #                      repetition_penalty=1.1)
 
 
-
 example_prompt = """
 <s>[INST]
 I have the following document: 
@@ -74,6 +73,7 @@ For example, don't say:
 """
 prompt = example_prompt + kw_prompt
 
+
 # llm = TextGeneration(generator, prompt=prompt)
 
 #Bedrock llm for keybert
@@ -89,6 +89,7 @@ kw_model = KeyLLM(llm)
 
 
 
+
 #Load the svm model
 # with open("./classifier/svm_classifier.pkl", "rb") as infile:
 #     clf = pickle.load(infile)
@@ -101,6 +102,7 @@ def get_root():
 
 @app.post("/extract")
 def extract_keywords(document:Dict) -> Dict:
+
     '''
     Pass a transcript to extract the keywords
     Purpose is to identify if answers contain key values to feed into the answers list.
@@ -109,6 +111,7 @@ def extract_keywords(document:Dict) -> Dict:
     #Pass a document as a list to the llm
     docs.append(document['transcript'])
     keywords = kw_model.extract_keywords(docs)
+
     print(keywords)
     #now feed the keywords into the Other prompts
     emergency_type = classify_emergency(keywords)
@@ -266,3 +269,4 @@ def suggest_service(keywords:str) -> str:
         contentType=contentType
         )
     return json.loads(response.get('body').read())["outputs"][0]["text"]
+
