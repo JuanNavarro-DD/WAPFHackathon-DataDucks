@@ -1,10 +1,17 @@
 from flask import Flask, render_template
+import requests
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     return render_template('main.html')
+
+@app.route('/keyword')
+def keyword():
+    r= requests.post('http://127.0.0.1:8000/extract',json={"transcript":"emergency"})
+    return r.text
+
 
 if __name__ == '__main__':
     app.run(debug=True)

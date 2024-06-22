@@ -9,12 +9,12 @@ from ctransformers import AutoModelForCausalLM
 from transformers import pipeline, AutoTokenizer
 
 from huggingface_hub import login
-login(token="HF_TOKEN") #TODO
+login(token="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") #TODO
 
 app = FastAPI()
 
 #Setup the llm
-model = AutoModelForCausalLM.from_pretrained("../../../models/mistral-7b-instruct-v0.1.Q4_K_M.gguf",
+model = AutoModelForCausalLM.from_pretrained("C:\\Users\\mdiet\\Downloads\\mistral-7b-instruct-v0.1.Q4_K_M.gguf",
                                              model_type="mistral",
                                              gpu_layers=0,
                                              hf=True) 
