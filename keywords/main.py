@@ -9,8 +9,10 @@ from ctransformers import AutoModelForCausalLM
 from transformers import pipeline, AutoTokenizer
 
 from huggingface_hub import login
-login(token="HF_TOKEN") #TODO
 
+HFToken = json.load(open("huggingFaceToken.json"))["token"]
+
+login(token=HFToken) 
 app = FastAPI()
 
 #Setup the llm
