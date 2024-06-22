@@ -1,11 +1,7 @@
 fastapi
 keybert
-ctransformers
-sentence-transformers
-transformers
-huggingface_hub
 langchain
 langchain-community 
 langchain-core
 langchain-aws
-
+boto3
