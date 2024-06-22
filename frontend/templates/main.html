@@ -39,7 +39,8 @@
 <body>
     <div class="container">
         <div class="row">
-            <!-- Left Column -->
+            <!-- Left Column --> 
+            
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="emergencyInput">What is your emergency?</label>
@@ -80,6 +81,7 @@
                     </div>
             </div>
             <!-- Middle Column -->
+            
             <div class="col-md-4">
                 <div class="questions">
                     <h5>Questions</h5>
@@ -89,9 +91,13 @@
                     <div class="keyword-extraction mt-4">
                         <strong>Key Word Extraction</strong>
                         <!-- Add keyword extraction content here -->
-                    </div>
+                    </div> <br>
+                    <form action="/keyword" method="post">
+                    <button class="btn btn-secondary">Keywords</button>
+                </form>
                 </div>
             </div>
+       
             <!-- Right Column -->
             <div class="col-md-4">
                 <div class="actions">
