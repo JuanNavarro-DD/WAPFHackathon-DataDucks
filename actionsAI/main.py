@@ -1,4 +1,3 @@
-from cgitb import text
 import json
 from fastapi import FastAPI
 from ctransformers import AutoModelForCausalLM
