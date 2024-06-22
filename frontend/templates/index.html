@@ -42,19 +42,7 @@
             <!-- Left Column --> 
             
             <div class="col-md-4">
-                <div class="form-group">
-                    <label for="emergencyInput">What is your emergency?</label>
-                    <select name = "emergency" id="etype" class="form-control">
-                    <option value = "armed_robbery">Armed Robbery</option>
-                    <option value = "suspicious_person">Suspicious Person</option>
-                    <option value = "domestic_violence">Domestic Violence</option>
-                </select>
-                    <!-- <input type="text"  id="emergencyInput"> -->
-                </div>
-                <div class="form-group">
-                    <label for="botOutput">Comments</label>
-                    <textarea class="form-control" id="botOutput" rows="3"></textarea>
-                </div>
+                
                     <div>
                         <div id="info"></div>
                         <div class="float-right">
@@ -63,9 +51,24 @@
                         </div>
                         <div id="results">
                         <form action="/keyword" method="post">
-                          <textarea id="final_span" name="final_span" class="final"></textarea>
-                          <textarea id="interim_span" name="interim_span" class="interim"></textarea>
+                          <textarea id="final_span" name="final_span" class="final" cols="45">{{transc}}</textarea>
+                          <textarea id="interim_span" name="interim_span" class="interim" cols="45">Live Recording</textarea>
                           <p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emergencyInput">What is your emergency?</label>
+                                <select name = "emergency" id="etype" class="form-control">
+                                <option value = "armed_robbery">Armed Robbery</option>
+                                <option value = "suspicious_person">Suspicious Person</option>
+                                <option value = "domestic_violence">Domestic Violence</option>
+                                <option value = "fire_emergency">Fire Emergency</option>
+                                <option value = "none" selected>None</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="botOutput">Comments</label>
+                            <textarea class="form-control" id="botOutput" name="botOutput" rows="3"></textarea>
                         </div>
                         <div>
                           <div style="display:none">
@@ -73,37 +76,38 @@
                               <select id="select_dialect"></select>
                           </div>
                           <div>
-                            <div class="float-right">
-                              <button id="copy_button" class="btn btn-primary ">Copy</button>
-                            </div>
+
                           </div>
                         </div>
           
                     </div>
             </div>
-            <!-- Middle Column -->
+            <!-- Right Column -->
             
-            <div class="col-md-4">
+            <div class="col-md-8">
                 <div class="questions">
-                    <h5>Recommendations</h5>
-
+                    <h5>"Every Second Matters" Assistant</h5>
                     <div class="keyword-extraction mt-4">
-                        <strong>{{fintran}}</strong>
-                        <!-- Add keyword extraction content here -->
+                        <table>
+                        {% for tran in trans %}
+                            <tr>
+                                <td>{{ tran }}</td>
+                            </tr>
+                        {% endfor %}
+                        </table>     
+                    </div> 
+                    <div class="keyword-extraction mt-4">
+                            {{etypes}}
+                    </div>
+                    <div class="keyword-extraction mt-4">
+                        {{actions}}
                     </div> <br>
 
-                    <button class="btn btn-secondary">Keywords</button>
+                    <button class="btn btn-secondary">Assistant</button>
                 </form>
                 </div>
             </div>
        
-            <!-- Right Column -->
-            <div class="col-md-4">
-                <div class="actions">
-                    <h5>Recommended Actions</h5>
-
-                </div>
-            </div>
         </div>
     </div>
 
