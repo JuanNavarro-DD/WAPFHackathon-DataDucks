@@ -62,7 +62,10 @@
                             <img id="start_img" src="{{url_for('static', filename='images/mic.gif')}}" alt="Start"></button>
                         </div>
                         <div id="results">
-                          <span id="final_span" class="final"></span>
+                            <form action="/keyword" method="post">
+                          <!-- <span id="final_span" name="final_span" class="final"></span> -->
+                          <textarea id="final_span" name="final_span" class="final"></textarea>
+                     
                           <span id="interim_span" class="interim"></span>
                           <p>
                         </div>
@@ -92,7 +95,7 @@
                         <strong>Key Word Extraction</strong>
                         <!-- Add keyword extraction content here -->
                     </div> <br>
-                    <form action="/keyword" method="post">
+
                     <button class="btn btn-secondary">Keywords</button>
                 </form>
                 </div>
