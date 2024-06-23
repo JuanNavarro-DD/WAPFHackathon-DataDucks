@@ -19,8 +19,9 @@ def index():
     trans = trans_json["questions"]
     etypes = "Summary of emergency"
     actions = 'Recommended action'
+    botOutput = ""
     transc = ""
-    return render_template('index.html',trans=trans, etypes=etypes, actions=actions, transc=transc)
+    return render_template('index.html',trans=trans, etypes=etypes, actions=actions, transc=transc, botOutput=botOutput)
 
 @app.route('/keyword',methods=('GET','POST'))
 def keyword():
@@ -28,7 +29,7 @@ def keyword():
         transc = str(request.form.get("final_span"))
         emergency = str(request.form.get("emergency"))
         botOutput = str(request.form.get("botOutput"))
-
+   
         headers = {"content-type":"application/json","accept":"application/json" }
         r= requests.post('http://127.0.0.1:8000/extract',json={"transcript":transc},headers=headers)
         
@@ -43,7 +44,7 @@ def keyword():
         (transc, str(emergency), str(botOutput), str(etypes), str(actions)))
         conn.commit()
 
-        return render_template("index.html", trans=trans, etypes=etypes, actions=actions, transc=transc)
+        return render_template("index.html", trans=trans, etypes=etypes, actions=actions, transc=transc, botOutput=botOutput)
     
 if __name__ == '__main__':
     app.run(debug=True)
