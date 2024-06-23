@@ -393,6 +393,19 @@
       {"q":"Is the situation still ongoing, or has it already occurred?", "qtype": ["basic"]},
       {"q":"Is the person conscious and breathing?", "qtype": ["basic"]},
       {"q":"Do you know CPR or any first aid that could be administered?", "qtype": ["basic"]},
-      {"q":"Is there anything else important responders should know?", "qtype": ["basic"]}
+      {"q":"Is there anything else important responders should know?", "qtype": ["basic"]},
+      {"q":"What is your emergency?", "qtype":["domestic violence"]},
+      {"q":"Are you in a safe place right now?", "qtype":["domestic violence"]},
+      {"q":"Is anyone injured?", "qtype":["domestic violence"]},
+      {"q":"Can you tell me what happened?", "qtype":["domestic violence"]},
+      {"q":"Who is the perpetrator?", "qtype":["domestic violence"]},
+      {"q":"Is the perpetrator still present?", "qtype":["domestic violence"]},
+      {"q":"Is there a weapon involved?", "qtype":["domestic violence"]},
+      {"q":"Have there been previous incidents of violence?", "qtype":["domestic violence"]},
+      {"q":"Are there children or other vulnerable individuals present?", "qtype":["domestic violence"]},
+      {"q":"Do you have a safe place to go if you need to leave?", "qtype":["domestic violence"]},
+      {"q":"Have you contacted any friends, family members, or support services for assistance?", "qtype":["domestic violence"]},
+      {"q":"Would you like to speak with a counselor or advocate for additional support?", "qtype":["domestic violence"]},
+      {"q":"Is there anything else you think is important for responders to know?", "qtype":["domestic violence"]}
     ]
 }
