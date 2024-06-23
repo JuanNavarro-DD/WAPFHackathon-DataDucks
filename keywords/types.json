@@ -1,0 +1,15 @@
+{
+    "emergency_types":[
+    "Theft",
+    "Assault",
+    "Traffic Accident",
+    "Breaking and Entering",
+    "Vandalism",
+    "Drug-Related Crimes",
+    "Public Disturbance",
+    "Missing Person",
+    "Suspicious Activity",
+    "Fraud",
+    "Domestic Violence"
+]
+}

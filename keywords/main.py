@@ -92,15 +92,18 @@ def classify_emergency(keywords:list) -> str:
     """
     modelId = "mistral.mistral-7b-instruct-v0:2"
 
+    emergencyTypes = json.load(open('types.json', 'r'))["emergency_types"]
+
+
     accept = "application/json"
     contentType = "application/json"
-    examplePrompt = """
+    examplePrompt = f"""
         <s>[INST]
         you are an emergency call assistant, you need to classify the type of emergency based on a set of keywords.
         keywords: ["stolen", "theft", "robbery", "burglary", "pickpocket", "shoplifting", "larceny", "mugging", "snatching", 
         "grand theft", "petty theft", "auto theft", "bike theft", "identity theft", "piracy", 
         "embezzlement", "looting", "stealing", "fraudulent appropriation", "pilferage"]
-        Please only return the emergency type
+        Please only return the emergency type from this emergency type list: {emergencyTypes}
         Do not describe why an emergency type was set
         For example, don't say: 
         "Here is the classification based on the keywords provided"
@@ -110,7 +113,7 @@ def classify_emergency(keywords:list) -> str:
         [INST]
         you are an emergency call assistant, you need to classify the type of emergency based on a set of keywords.
         keywords: {keywords}
-        Please only return the emergency type
+        Please only return the emergency type from this emergency type list: {emergencyTypes}
         Do not describe why an emergency type was set
         For example, don't say: 
         "Here is the classification based on the keywords provided"
@@ -131,7 +134,11 @@ def classify_emergency(keywords:list) -> str:
         accept=accept, 
         contentType=contentType
         )
-    return json.loads(response.get('body').read())["outputs"][0]["text"]
+    emergencyTypeOut = json.loads(response.get('body').read())["outputs"][0]["text"]
+    for emergency in emergencyTypes:
+        if emergency in emergencyTypeOut:
+            return emergency
+    return "emergency not found, not enough information."
 
 
 
