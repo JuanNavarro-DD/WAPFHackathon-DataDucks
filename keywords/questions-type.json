@@ -384,7 +384,6 @@
           "q": "Can you provide a description of any suspects?",
           "qtype": ["fraud"]
       },
-      {"q":"What is your emergency?", "qtype": ["core"]},
       {"q":"Where are you located right now?", "qtype": ["core"]},
       {"q":"Can you provide the address or nearest intersection?", "qtype": ["core"]},
       {"q":"Are you calling from a mobile phone or a landline?", "qtype": ["basic"]},
