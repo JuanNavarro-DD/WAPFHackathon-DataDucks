@@ -52,9 +52,9 @@ example_prompt = """
 <s>[INST]
 I have the following document: 
 - The website mentions that it only takes a couple of days to deliver but I still have not received mine.
-
-Please give me the keywords that are present in this document and separate them with commas.
+Please give me 5 keywords that are present in this document and separate them with commas.
 Make sure you only return the keywords and say nothing else.
+Do not provide additional context
 For example, don't say: 
 "Here are the keywords present in the document"
 [/INST] potato, badger, kestral, concept, class</s>"""
@@ -63,11 +63,11 @@ kw_prompt = """
 [INST]
 I have the following document:
 - [DOCUMENT]
-Please give me the keywords that are present in this document and separate them with commas.
+Please give me 5 keywords that are present in this document and separate them with commas.
 Make sure you only return the keywords and say nothing else.
+Do not provide additional context
 For example, don't say: 
 "Here are the keywords present in the document"
-
 [/INST]
 
 """
@@ -79,7 +79,7 @@ prompt = example_prompt + kw_prompt
 #Bedrock llm for keybert
 modelId = "mistral.mistral-7b-instruct-v0:2"
 #client=bedrock
-llm = Bedrock(model_id=modelId, credentials_profile_name="dd-sandbox-jp")
+llm = Bedrock(model_id=modelId, credentials_profile_name="dd-sandbox-jp", model_kwargs={"temperature":0.1, })
 
 chain = load_qa_chain(llm, chain_type = "stuff")
 
@@ -110,17 +110,17 @@ def extract_keywords(document:Dict) -> Dict:
     docs = []
     #Pass a document as a list to the llm
     docs.append(document['transcript'])
-    keywords = kw_model.extract_keywords(docs)
-
-    print(keywords)
+    keywords = kw_model.extract_keywords(docs)[0]
+    L_keywords = [e.lower() for e in keywords]
+    print(L_keywords)
     #now feed the keywords into the Other prompts
-    emergency_type = classify_emergency(keywords)
+    emergency_type = classify_emergency(L_keywords).lstrip()
 
     questions = return_questions(emergency_type)
     print(questions)
     #now construct the return
 
-    actions = suggest_service(emergency_type)
+    actions = suggest_service(emergency_type).lstrip()
 
     print(actions)
     output = {
@@ -161,17 +161,17 @@ def classify_emergency(keywords:list) -> str:
         "grand theft", "petty theft", "auto theft", "bike theft", "identity theft", "piracy", 
         "embezzlement", "looting", "stealing", "fraudulent appropriation", "pilferage"]
         Please only return the emergency type
-        Attention: Your response should only be the emergency type
+        Do not describe why an emergency type was set
         For example, don't say: 
         "Here is the classification based on the keywords provided"
-        [/INST]Theft</s>"""
+        [/INST]theft</s>"""
 
     questionPrompt = f"""
         [INST]
         you are an emergency call assistant, you need to classify the type of emergency based on a set of keywords.
-        answer: Theft
         keywords: {keywords}
         Please only return the emergency type
+        Do not describe why an emergency type was set
         For example, don't say: 
         "Here is the classification based on the keywords provided"
         [/INST]
@@ -183,7 +183,8 @@ def classify_emergency(keywords:list) -> str:
         "prompt": prompt,
         "max_tokens": 50,
         "top_p": 0.9,
-        "temperature": 1.0
+        "top_k": 50,
+        "temperature": 0.1
     })
     response = bedrock.invoke_model(
         modelId=modelId, 
@@ -206,11 +207,16 @@ def return_questions(keyword:str) -> list:
 
     questions = json.loads(jsondata)
     to_send = []
+    #Add the core 3 questions every time
+    for q in questions['emergencies']:
+        if "core" in q['qtype']:
+            to_send.append(q['q'])
+
     for q in questions['emergencies']:
         if keyword in q['qtype']:
             to_send.append(q['q'])
-        
-    if len(to_send) == 0:
+    
+    if len(to_send) == 3:
         for q in questions['emergencies']:
             if "basic" in q['qtype']:
                 to_send.append(q['q'])
@@ -237,10 +243,10 @@ def suggest_service(keywords:str) -> str:
         I understand that I need to call emergencies but I still want to know what services should be sent.
         [/INST]fire department, ambulance</s>"""
 
-    servicePrompt = """
+    servicePrompt = f"""
         [INST]
-        based on the following keyworkds:
-        - [keywords]
+        based on the following keywords:
+        - {keywords}
         Please tell me what emergency services should be sent separate them with commas.
         Make sure you only return the service name and say nothing else.
         For example, don't say: 
@@ -251,15 +257,16 @@ def suggest_service(keywords:str) -> str:
 
         """
     prompt = examplePrompt + servicePrompt
-    customizedPrompt = prompt.replace('[keywords]', keywords)
+    #customizedPrompt = prompt.replace('[keywords]', keywords)
     #Pass a document as a list to the llm
     # services = generator(customizedPrompt,do_sample=True, top_k=50, top_p=0.95, temperature=1.0, return_full_text=False)
     # return services[0]['generated_text']
     body = json.dumps({
-        "prompt": customizedPrompt,
+        "prompt": prompt,
         "max_tokens": 100,
         "top_p": 0.9,
-        "temperature": 1.0
+        "top_k": 50,
+        "temperature": 0.1
     })
 
     response = bedrock.invoke_model(

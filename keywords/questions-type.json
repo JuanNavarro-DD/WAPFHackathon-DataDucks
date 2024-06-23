@@ -2,43 +2,43 @@
   "emergencies": [
       {
         "q": "Can you describe what was stolen?",
-        "qtype": ["theft"]
+        "qtype": ["theft", "burglary"]
       },
       {
         "q": "When did the theft occur?",
-        "qtype": ["theft"]
+        "qtype": ["theft", "burglary"]
       },
       {
         "q": "Do you know who may have committed the theft?",
-        "qtype": ["theft"]
+        "qtype": ["theft", "burglary"]
       },
       {
         "q": "Was the theft from a vehicle, home, or person?",
-        "qtype": ["theft"]
+        "qtype": ["theft", "burglary"]
       },
       {
         "q": "Were there any witnesses to the theft?",
-        "qtype": ["theft"]
+        "qtype": ["theft", "burglary"]
       },
       {
         "q": "Is there any video surveillance of the area where the theft occurred?",
-        "qtype": ["theft"]
+        "qtype": ["theft", "burglary"]
       },
       {
         "q": "Did you see any suspicious individuals or vehicles in the area before the theft?",
-        "qtype": ["theft"]
+        "qtype": ["theft", "burglary"]
       },
       {
         "q": "Have you reported the theft to the police?",
-        "qtype": ["theft"]
+        "qtype": ["theft", "burglary"]
       },
       {
         "q": "Is there any identifiable information about the stolen items (serial numbers, unique marks)?",
-        "qtype": ["theft"]
+        "qtype": ["theft", "burglary"]
       },
       {
         "q": "How did the thief gain access to the property or items?",
-        "qtype": ["theft"]
+        "qtype": ["theft", "burglary"]
       },
       {
           "q": "Can you describe the nature of the assault?",
@@ -384,9 +384,8 @@
           "q": "Can you provide a description of any suspects?",
           "qtype": ["fraud"]
       },
-      {"q":"What is your emergency?", "qtype": ["basic"]},
-      {"q":"Where are you located right now?", "qtype": ["basic"]},
-      {"q":"Can you provide the address or nearest intersection?", "qtype": ["basic"]},
+      {"q":"Where are you located right now?", "qtype": ["core"]},
+      {"q":"Can you provide the address or nearest intersection?", "qtype": ["core"]},
       {"q":"Are you calling from a mobile phone or a landline?", "qtype": ["basic"]},
       {"q":"How many people are involved or injured?", "qtype": ["basic"]},
       {"q":"Is anyone in immediate danger?", "qtype": ["basic"]},
