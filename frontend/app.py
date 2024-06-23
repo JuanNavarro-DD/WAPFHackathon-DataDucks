@@ -36,7 +36,7 @@ def keyword():
         json_object = json.loads(r.text)
         trans = json_object["questions"]
         etypes = json_object["Emergency Type"]
-        actions = 'Please refer to '+json_object["Actions"]
+        actions = json_object["Actions"]
 
         cur = conn.cursor()
         cur.execute(
