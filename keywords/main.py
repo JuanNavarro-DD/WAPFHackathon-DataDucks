@@ -216,7 +216,7 @@ def return_questions(keyword:str) -> list:
         if keyword in q['qtype']:
             to_send.append(q['q'])
     
-    if len(to_send) == 3:
+    if len(to_send) == 2:
         for q in questions['emergencies']:
             if "basic" in q['qtype']:
                 to_send.append(q['q'])
