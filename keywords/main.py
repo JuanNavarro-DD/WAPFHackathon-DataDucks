@@ -64,7 +64,7 @@ def define_emergency(document:dict) -> dict:
     
     docs.append(document['transcript'])
     keywords = kw_model.extract_keywords(docs)[0]
-    L_keywords = [e.lower() for e in keywords]
+    L_keywords = [e.lower().split('\n')[0] for e in keywords]
     print(L_keywords)
 
     #now feed the keywords into the Other prompts
@@ -105,6 +105,7 @@ def classify_emergency(keywords:list) -> str:
         "embezzlement", "looting", "stealing", "fraudulent appropriation", "pilferage"]
         Please only return the emergency type from this emergency type list: {emergencyTypes}
         Do not describe why an emergency type was set
+        Do not return the prompt.
         For example, don't say: 
         "Here is the classification based on the keywords provided"
         [/INST]theft</s>"""
@@ -115,6 +116,7 @@ def classify_emergency(keywords:list) -> str:
         keywords: {keywords}
         Please only return the emergency type from this emergency type list: {emergencyTypes}
         Do not describe why an emergency type was set
+        Do not return the prompt.
         For example, don't say: 
         "Here is the classification based on the keywords provided"
         [/INST]
@@ -135,8 +137,9 @@ def classify_emergency(keywords:list) -> str:
         contentType=contentType
         )
     emergencyTypeOut = json.loads(response.get('body').read())["outputs"][0]["text"]
+    print(emergencyTypeOut)
     for emergency in emergencyTypes:
-        if emergency in emergencyTypeOut:
+        if emergency.lower() in emergencyTypeOut.lower():
             return emergency
     return "emergency not found, not enough information."
 
